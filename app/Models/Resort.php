@@ -9,6 +9,11 @@ class Resort extends Model
 {
     use HasFactory;
 
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
+
     protected $guarded = [];
     // protected $table = 'resorts';
     // protected $fillable = [
