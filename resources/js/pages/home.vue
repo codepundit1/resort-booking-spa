@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-header">Home Component</div>
                     <div class="card-body">
-                        {{ user }}
+
                     </div>
 
                 </div>

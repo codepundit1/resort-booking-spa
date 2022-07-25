@@ -6,14 +6,14 @@
                     <div class="card-header d-flex justify-content-between align-item-center">
                         <!-- <h5 class="mb-0">Resort List</h5> -->
 
-                       <div class="row">
+                       <!-- <div class="row">
                            <div class="col">
                              <input type="search" name="search" class="form-control" id="#" placeholder="Jone Due">
                            </div>
                             <div class="col">
                             <a href="#" class="btn btn-primary">Search</a>
                            </div>
-                        </div>
+                        </div> -->
 
 
                         <router-link  :to="{name:'create-resort'}" class="btn btn-primary">Add Resort</router-link>
