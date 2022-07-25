@@ -19,7 +19,7 @@
         "resolve-url-loader": "^3.1.2",
         "sass": "^1.32.11",
         "sass-loader": "^11.0.1",
-        "vue": "^2.6.12",
+        "vue": "^2.7.8",
         "vue-loader": "^15.9.8",
         "vue-template-compiler": "^2.6.12"
     },
@@ -28,6 +28,7 @@
         "object-to-formdata": "^3.0.9",
         "vform": "^2.1.2",
         "vue-laravel-validator": "^1.0.4",
-        "vue-router": "^2.0.0"
+        "vue-router": "^2.0.0",
+        "vuex": "^3.0.0"
     }
 }
