@@ -20,9 +20,9 @@
                             >Home</router-link
                         >
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <router-link class="nav-link" :to="{name:'resort-list'}">Resort</router-link>
-                    </li>
+                    </li> -->
 
                     <li class="nav-item">
                         <router-link class="nav-link" :to="{name:'booking-list'}">Booking</router-link>
@@ -34,6 +34,11 @@
 
                     </li>
 
+                     <li class="nav-item">
+                        <a href="" class="nav-link" @click.prevent="logout">Logout</a>
+
+                    </li>
+
                 </ul>
 
             </div>
@@ -42,7 +47,16 @@
 </template>
 
 <script>
-export default {};
+export default {
+    methods: {
+         logout() {
+            axios.post('/logout').then(response => {
+                this.$router.push({name: 'home'});
+            });
+        }
+    },
+
+}
 </script>
 
 <style></style>

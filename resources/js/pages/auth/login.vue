@@ -11,19 +11,19 @@
                             <div class="card-body">
 
 
-                                <form action="" method="post" @click.prevent="login()">
+                                <form action="" method="post" @submit.prevent="login()">
 
                                     <div class="form-group">
                                         <label for="">Email</label>
-                                        <input type="text" class="form-control mb-3" placeholder="email">
-                                        <!-- <div v-if="form.errors.has('email')" v-html="form.errors.get('email')" /> -->
+                                        <input type="text" v-model="Loginform.email" class="form-control mb-3" placeholder="email">
+                                        <div v-if="Loginform.errors.has('email')" v-html="Loginform.errors.get('email')" />
 
                                     </div>
 
                                      <div class="form-group">
                                         <label for="">Password</label>
-                                        <input type="password" class="form-control mb-3" placeholder="email">
-                                        <!-- <div v-if="form.errors.has('password')" v-html="form.errors.get('password')" /> -->
+                                        <input type="password" v-model="Loginform.password" class="form-control mb-3" placeholder="email">
+                                        <div v-if="Loginform.errors.has('password')" v-html="Loginform.errors.get('password')" />
 
                                     </div>
 
@@ -42,18 +42,23 @@
 </template>
 
 <script>
-
+import { Form } from 'vform'
 export default{
+
+
+     data(){
+        return {
+            Loginform: new Form({
+                email: 'jahidhasanshiplo4@gmail.com',
+                password: '12345678',
+            }),
+        }
+    },
     methods: {
         login(){
             axios.get('/sanctum/csrf-cookie').then(response => {
-                console.log('hell0');
-
-                axios.post('/login', {
-                    email: 'jahidhasanshiplo4@gmail.com',
-                    password: '12345678',
-                }).then(response=>{
-                    console.log(response);
+                this.Loginform.post('/login').then(response=>{
+                    this.$router.push({name: 'resort-list'});
 
                 });
             });

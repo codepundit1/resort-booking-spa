@@ -5309,7 +5309,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  methods: {
+    logout: function logout() {
+      var _this = this;
+
+      axios.post('/logout').then(function (response) {
+        _this.$router.push({
+          name: 'home'
+        });
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -5324,6 +5341,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vform */ "./node_modules/vform/dist/vform.es.js");
 //
 //
 //
@@ -5367,16 +5385,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      Loginform: new vform__WEBPACK_IMPORTED_MODULE_0__.Form({
+        email: 'jahidhasanshiplo4@gmail.com',
+        password: '12345678'
+      })
+    };
+  },
   methods: {
     login: function login() {
+      var _this = this;
+
       axios.get('/sanctum/csrf-cookie').then(function (response) {
-        console.log('hell0');
-        axios.post('/login', {
-          email: 'jahidhasanshiplo4@gmail.com',
-          password: '12345678'
-        }).then(function (response) {
-          console.log(response);
+        _this.Loginform.post('/login').then(function (response) {
+          _this.$router.push({
+            name: 'resort-list'
+          });
         });
       });
     },
@@ -29681,22 +29708,6 @@ var render = function () {
                       "router-link",
                       {
                         staticClass: "nav-link",
-                        attrs: { to: { name: "resort-list" } },
-                      },
-                      [_vm._v("Resort")]
-                    ),
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        staticClass: "nav-link",
                         attrs: { to: { name: "booking-list" } },
                       },
                       [_vm._v("Booking")]
@@ -29720,6 +29731,23 @@ var render = function () {
                   ],
                   1
                 ),
+                _vm._v(" "),
+                _c("li", { staticClass: "nav-item" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "nav-link",
+                      attrs: { href: "" },
+                      on: {
+                        click: function ($event) {
+                          $event.preventDefault()
+                          return _vm.logout.apply(null, arguments)
+                        },
+                      },
+                    },
+                    [_vm._v("Logout")]
+                  ),
+                ]),
               ]),
             ]
           ),
@@ -29791,13 +29819,95 @@ var render = function () {
                   {
                     attrs: { action: "", method: "post" },
                     on: {
-                      click: function ($event) {
+                      submit: function ($event) {
                         $event.preventDefault()
                         return _vm.login()
                       },
                     },
                   },
-                  [_vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm._m(2)]
+                  [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "" } }, [_vm._v("Email")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.Loginform.email,
+                            expression: "Loginform.email",
+                          },
+                        ],
+                        staticClass: "form-control mb-3",
+                        attrs: { type: "text", placeholder: "email" },
+                        domProps: { value: _vm.Loginform.email },
+                        on: {
+                          input: function ($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.Loginform,
+                              "email",
+                              $event.target.value
+                            )
+                          },
+                        },
+                      }),
+                      _vm._v(" "),
+                      _vm.Loginform.errors.has("email")
+                        ? _c("div", {
+                            domProps: {
+                              innerHTML: _vm._s(
+                                _vm.Loginform.errors.get("email")
+                              ),
+                            },
+                          })
+                        : _vm._e(),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "" } }, [_vm._v("Password")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.Loginform.password,
+                            expression: "Loginform.password",
+                          },
+                        ],
+                        staticClass: "form-control mb-3",
+                        attrs: { type: "password", placeholder: "email" },
+                        domProps: { value: _vm.Loginform.password },
+                        on: {
+                          input: function ($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.Loginform,
+                              "password",
+                              $event.target.value
+                            )
+                          },
+                        },
+                      }),
+                      _vm._v(" "),
+                      _vm.Loginform.errors.has("password")
+                        ? _c("div", {
+                            domProps: {
+                              innerHTML: _vm._s(
+                                _vm.Loginform.errors.get("password")
+                              ),
+                            },
+                          })
+                        : _vm._e(),
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(0),
+                  ]
                 ),
               ]),
             ]),
@@ -29808,32 +29918,6 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "" } }, [_vm._v("Email")]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control mb-3",
-        attrs: { type: "text", placeholder: "email" },
-      }),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "" } }, [_vm._v("Password")]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control mb-3",
-        attrs: { type: "password", placeholder: "email" },
-      }),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement
