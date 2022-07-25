@@ -70,6 +70,8 @@ export default{
                 let user = response.data;
                 this.$store.commit('SET_USER', user);
                 this.$store.commit('SET_AUTHENTICATE', true);
+
+                localStorage.setItem("auth", true);
             });
         }
     },

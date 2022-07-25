@@ -1,13 +1,30 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-8">
                 <div class="card">
-                    <div class="card-header text-center">Dashboard</div>
-                    <div class="card-body">
-                        Hello! {{ user.name }} Welcome to Dashboard
-                    </div>
-
+                    <div class="card-header">Dashboard</div>
+                    <div class="card-body">Welcome, {{ user.name }}</div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="list-group">
+                    <router-link
+                        :to="{ name: 'dashboard' }"
+                        class="list-group-item list-group-item-action"
+                        >Dashboard</router-link
+                    >
+                    <router-link
+                        :to="{ name: 'user-profile' }"
+                        class="list-group-item list-group-item-action"
+                        >User Profile</router-link
+                    >
+                    <a
+                        href="#"
+                        class="list-group-item list-group-item-action"
+                        @click.prevent="logout"
+                        >Logout</a
+                    >
                 </div>
             </div>
         </div>
@@ -17,10 +34,23 @@
 <script>
 export default {
     computed: {
-        user(){
+        user() {
             return this.$store.getters.getUser;
-        }
+        },
 
+        // auth(){
+        //     return this.$store.getters.getAuthenticated;
+        // },
+    },
+
+    methods: {
+        logout() {
+            axios.post("/logout").then((response) => {
+                // localStorage.removeItem("auth");
+                // this.$store.commit("SET_AUTHENTICATED", false);
+                this.$router.push({ name: "login" });
+            });
+        },
     },
     mounted() {
         console.log("Component mounted.");

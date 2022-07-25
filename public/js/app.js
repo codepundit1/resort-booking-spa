@@ -5321,21 +5321,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   computed: {
     auth: function auth() {
       return this.$store.getters.getAuthenticated;
-    }
-  },
-  methods: {
-    logout: function logout() {
-      var _this = this;
-
-      axios.post('/logout').then(function (response) {
-        _this.$router.push({
-          name: 'home'
-        });
-      });
     }
   }
 });
@@ -5369,10 +5360,43 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   computed: {
     user: function user() {
       return this.$store.getters.getUser;
+    } // auth(){
+    //     return this.$store.getters.getAuthenticated;
+    // },
+
+  },
+  methods: {
+    logout: function logout() {
+      var _this = this;
+
+      axios.post("/logout").then(function (response) {
+        // localStorage.removeItem("auth");
+        // this.$store.commit("SET_AUTHENTICATED", false);
+        _this.$router.push({
+          name: "login"
+        });
+      });
     }
   },
   mounted: function mounted() {
@@ -5470,6 +5494,8 @@ __webpack_require__.r(__webpack_exports__);
         _this2.$store.commit('SET_USER', user);
 
         _this2.$store.commit('SET_AUTHENTICATE', true);
+
+        localStorage.setItem("auth", true);
       });
     }
   },
@@ -29873,112 +29899,89 @@ var render = function () {
               attrs: { id: "navbarSupportedContent" },
             },
             [
-              _c("ul", { staticClass: "navbar-nav ms-auto mb-2 mb-lg-0" }, [
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
+              _vm.auth
+                ? _c("ul", { staticClass: "navbar-nav ms-auto mb-2 mb-lg-0" }, [
                     _c(
-                      "router-link",
-                      {
-                        staticClass: "nav-link",
-                        attrs: { to: { name: "home" } },
-                      },
-                      [_vm._v("Home")]
-                    ),
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _vm.auth
-                      ? _c(
+                      "li",
+                      { staticClass: "nav-item" },
+                      [
+                        _c(
                           "router-link",
                           {
                             staticClass: "nav-link",
                             attrs: { to: { name: "dashboard" } },
                           },
                           [_vm._v("Dashboard")]
-                        )
-                      : _vm._e(),
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _vm.auth
-                      ? _c(
+                        ),
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "li",
+                      { staticClass: "nav-item" },
+                      [
+                        _c(
                           "router-link",
                           {
                             staticClass: "nav-link",
                             attrs: { to: { name: "resort-list" } },
                           },
                           [_vm._v("Resort")]
-                        )
-                      : _vm._e(),
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _vm.auth
-                      ? _c(
+                        ),
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "li",
+                      { staticClass: "nav-item" },
+                      [
+                        _c(
                           "router-link",
                           {
                             staticClass: "nav-link",
                             attrs: { to: { name: "booking-list" } },
                           },
                           [_vm._v("Booking")]
-                        )
-                      : _vm._e(),
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        staticClass: "nav-link",
-                        attrs: { to: { name: "login" } },
-                      },
-                      [_vm._v("Login")]
+                        ),
+                      ],
+                      1
                     ),
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c("li", { staticClass: "nav-item" }, [
-                  _vm.auth
-                    ? _c(
-                        "a",
-                        {
-                          staticClass: "nav-link",
-                          attrs: { href: "" },
-                          on: {
-                            click: function ($event) {
-                              $event.preventDefault()
-                              return _vm.logout.apply(null, arguments)
-                            },
+                  ])
+                : _c("ul", { staticClass: "navbar-nav ms-auto" }, [
+                    _c(
+                      "li",
+                      { staticClass: "nav-item" },
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "nav-link",
+                            attrs: { to: { name: "home" } },
                           },
-                        },
-                        [_vm._v("Logout")]
-                      )
-                    : _vm._e(),
-                ]),
-              ]),
+                          [_vm._v("Home")]
+                        ),
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "li",
+                      { staticClass: "nav-item" },
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "nav-link",
+                            attrs: { to: { name: "login" } },
+                          },
+                          [_vm._v("Login")]
+                        ),
+                      ],
+                      1
+                    ),
+                  ]),
             ]
           ),
         ],
@@ -30031,22 +30034,58 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col-md-8" }, [
+  return _c("div", { staticClass: "container mt-5" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-8" }, [
         _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-header text-center" }, [
-            _vm._v("Dashboard"),
-          ]),
+          _c("div", { staticClass: "card-header" }, [_vm._v("Dashboard")]),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
-            _vm._v(
-              "\n                    Hello! " +
-                _vm._s(_vm.user.name) +
-                " Welcome to Dashboard\n                "
-            ),
+            _vm._v("Welcome, " + _vm._s(_vm.user.name)),
           ]),
         ]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-4" }, [
+        _c(
+          "div",
+          { staticClass: "list-group" },
+          [
+            _c(
+              "router-link",
+              {
+                staticClass: "list-group-item list-group-item-action",
+                attrs: { to: { name: "dashboard" } },
+              },
+              [_vm._v("Dashboard")]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                staticClass: "list-group-item list-group-item-action",
+                attrs: { to: { name: "user-profile" } },
+              },
+              [_vm._v("User Profile")]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "list-group-item list-group-item-action",
+                attrs: { href: "#" },
+                on: {
+                  click: function ($event) {
+                    $event.preventDefault()
+                    return _vm.logout.apply(null, arguments)
+                  },
+                },
+              },
+              [_vm._v("Logout")]
+            ),
+          ],
+          1
+        ),
       ]),
     ]),
   ])

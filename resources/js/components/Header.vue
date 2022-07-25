@@ -13,39 +13,41 @@
             >
                 <span class="navbar-toggler-icon"></span>
             </button>
+
+
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0" v-if="auth">
+
+
+                    <li class="nav-item">
+                        <router-link class="nav-link" :to="{name:'dashboard'}">Dashboard</router-link>
+
+                    </li>
+
+                    <li class="nav-item">
+                        <router-link class="nav-link"  :to="{name:'resort-list'}">Resort</router-link>
+                    </li>
+
+                    <li class="nav-item">
+                        <router-link class="nav-link"  :to="{name:'booking-list'}">Booking</router-link>
+
+                    </li>
+
+
+
+                </ul>
+
+
+                 <ul class="navbar-nav ms-auto" v-else>
                     <li class="nav-item">
                         <router-link class="nav-link" :to="{name:'home'}"
                             >Home</router-link
                         >
                     </li>
 
-                    <li class="nav-item">
-                        <router-link class="nav-link" v-if="auth" :to="{name:'dashboard'}">Dashboard</router-link>
-
-                    </li>
-
-                    <li class="nav-item">
-                        <router-link class="nav-link" v-if="auth" :to="{name:'resort-list'}">Resort</router-link>
-                    </li>
-
-                    <li class="nav-item">
-                        <router-link class="nav-link" v-if="auth" :to="{name:'booking-list'}">Booking</router-link>
-
-                    </li>
-
-                    <li class="nav-item">
-                        <router-link class="nav-link" :to="{name:'login'}">Login</router-link>
-
-                    </li>
-
-
                      <li class="nav-item">
-                        <a href="" class="nav-link" v-if="auth" @click.prevent="logout">Logout</a>
-
+                        <router-link class="nav-link" :to="{name:'login'}">Login</router-link>
                     </li>
-
                 </ul>
 
             </div>
@@ -62,13 +64,7 @@ export default {
         }
 
     },
-    methods: {
-         logout() {
-            axios.post('/logout').then(response => {
-                this.$router.push({name: 'home'});
-            });
-        }
-    },
+
 
 }
 </script>
