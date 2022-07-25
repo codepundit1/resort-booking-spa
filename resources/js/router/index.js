@@ -20,6 +20,7 @@ import EditBooking from '../pages/booking/edit.vue'
 
 // Authentication
 import Login from '../pages/auth/login.vue'
+import Dashboard from '../pages/auth/dashboard.vue'
 
 const routes = new VueRouter({
     mode: 'history',
@@ -81,6 +82,13 @@ const routes = new VueRouter({
             path: '/auth/login',
             component: Login,
             name: 'login',
+
+        },
+
+        {
+            path: '/dashboard',
+            component: Dashboard,
+            name: 'dashboard',
 
         },
     ]

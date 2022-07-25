@@ -3,9 +3,9 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Home Component</div>
+                    <div class="card-header text-center">Dashboard</div>
                     <div class="card-body">
-                        {{ user }}
+                        Hello! {{ user.name }} Welcome to Dashboard
                     </div>
 
                 </div>
@@ -16,7 +16,12 @@
 
 <script>
 export default {
+    computed: {
+        user(){
+            return this.$store.getters.getUser;
+        }
 
+    },
     mounted() {
         console.log("Component mounted.");
     },

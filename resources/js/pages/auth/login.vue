@@ -58,7 +58,8 @@ export default{
         login(){
             axios.get('/sanctum/csrf-cookie').then(response => {
                 this.Loginform.post('/login').then(response=>{
-                    this.$router.push({name: 'resort-list'});
+                    this.getUserData();
+                    this.$router.push({name: 'dashboard'});
 
                 });
             });
@@ -66,13 +67,14 @@ export default{
 
         getUserData(){
             axios.get('/api/user').then(response => {
-                console.log(response.data);
+                let user = response.data;
+                this.$store.commit('SET_USER', user);
             });
         }
     },
 
     mounted(){
-        this.getUserData();
+
     }
 }
 
