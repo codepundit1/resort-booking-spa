@@ -4,12 +4,19 @@ import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
 import Home from '../pages/home.vue'
+
+// Resort
 import ResortList from '../pages/resort/index.vue'
 import CreateResort from '../pages/resort/create.vue'
 import EditResort from '../pages/resort/edit.vue'
+
+// booking
 import BookingList from '../pages/booking/index.vue'
 import CreateBooking from '../pages/booking/create.vue'
 import EditBooking from '../pages/booking/edit.vue'
+
+
+
 
 // Authentication
 import Login from '../pages/auth/login.vue'
@@ -66,6 +73,8 @@ const routes = new VueRouter({
             name: 'edit-booking',
 
         },
+
+
 
         //Authentication
         {

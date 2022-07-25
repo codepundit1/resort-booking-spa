@@ -50,8 +50,13 @@
                                         <a @click.prevent="deleteResort(resort)" href="#" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
                                     </td>
                                 </tr>
+
                             </tbody>
+
+
                         </table>
+
+
                     </div>
                 </div>
             </div>
