@@ -20,12 +20,18 @@
                             >Home</router-link
                         >
                     </li>
-                    <!-- <li class="nav-item">
-                        <router-link class="nav-link" :to="{name:'resort-list'}">Resort</router-link>
-                    </li> -->
 
                     <li class="nav-item">
-                        <router-link class="nav-link" :to="{name:'booking-list'}">Booking</router-link>
+                        <router-link class="nav-link" :to="{name:'dashboard'}">Dashboard</router-link>
+
+                    </li>
+
+                    <li class="nav-item">
+                        <router-link class="nav-link" v-if="auth" :to="{name:'resort-list'}">Resort</router-link>
+                    </li>
+
+                    <li class="nav-item">
+                        <router-link class="nav-link" v-if="auth" :to="{name:'booking-list'}">Booking</router-link>
 
                     </li>
 
@@ -34,8 +40,9 @@
 
                     </li>
 
+
                      <li class="nav-item">
-                        <a href="" class="nav-link" @click.prevent="logout">Logout</a>
+                        <a href="" class="nav-link" v-if="auth" @click.prevent="logout">Logout</a>
 
                     </li>
 
@@ -48,6 +55,13 @@
 
 <script>
 export default {
+
+    computed: {
+        auth(){
+            return this.$store.getters.getAuthenticated;
+        }
+
+    },
     methods: {
          logout() {
             axios.post('/logout').then(response => {

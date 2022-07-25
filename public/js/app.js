@@ -5314,7 +5314,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  computed: {
+    auth: function auth() {
+      return this.$store.getters.getAuthenticated;
+    }
+  },
   methods: {
     logout: function logout() {
       var _this = this;
@@ -5456,6 +5468,8 @@ __webpack_require__.r(__webpack_exports__);
         var user = response.data;
 
         _this2.$store.commit('SET_USER', user);
+
+        _this2.$store.commit('SET_AUTHENTICATE', true);
       });
     }
   },
@@ -6075,7 +6089,8 @@ vue__WEBPACK_IMPORTED_MODULE_2__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_0_
 var store = new vuex__WEBPACK_IMPORTED_MODULE_0__["default"].Store({
   state: {
     message: 'Welcome ',
-    user: {}
+    user: {},
+    authenticated: false
   },
   getters: {
     getMessage: function getMessage(state) {
@@ -6083,11 +6098,17 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_0__["default"].Store({
     },
     getUser: function getUser(state) {
       return state.user;
+    },
+    getAuthenticated: function getAuthenticated(state) {
+      return state.authenticated;
     }
   },
   mutations: {
     SET_USER: function SET_USER(state, data) {
       state.user = data;
+    },
+    SET_AUTHENTICATE: function SET_AUTHENTICATE(state, data) {
+      state.authenticated = data;
     }
   }
 });
@@ -29877,10 +29898,46 @@ var render = function () {
                       "router-link",
                       {
                         staticClass: "nav-link",
-                        attrs: { to: { name: "booking-list" } },
+                        attrs: { to: { name: "dashboard" } },
                       },
-                      [_vm._v("Booking")]
+                      [_vm._v("Dashboard")]
                     ),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _vm.auth
+                      ? _c(
+                          "router-link",
+                          {
+                            staticClass: "nav-link",
+                            attrs: { to: { name: "resort-list" } },
+                          },
+                          [_vm._v("Resort")]
+                        )
+                      : _vm._e(),
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _vm.auth
+                      ? _c(
+                          "router-link",
+                          {
+                            staticClass: "nav-link",
+                            attrs: { to: { name: "booking-list" } },
+                          },
+                          [_vm._v("Booking")]
+                        )
+                      : _vm._e(),
                   ],
                   1
                 ),
@@ -29902,20 +29959,22 @@ var render = function () {
                 ),
                 _vm._v(" "),
                 _c("li", { staticClass: "nav-item" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "nav-link",
-                      attrs: { href: "" },
-                      on: {
-                        click: function ($event) {
-                          $event.preventDefault()
-                          return _vm.logout.apply(null, arguments)
+                  _vm.auth
+                    ? _c(
+                        "a",
+                        {
+                          staticClass: "nav-link",
+                          attrs: { href: "" },
+                          on: {
+                            click: function ($event) {
+                              $event.preventDefault()
+                              return _vm.logout.apply(null, arguments)
+                            },
+                          },
                         },
-                      },
-                    },
-                    [_vm._v("Logout")]
-                  ),
+                        [_vm._v("Logout")]
+                      )
+                    : _vm._e(),
                 ]),
               ]),
             ]
