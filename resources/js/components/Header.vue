@@ -22,7 +22,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <router-link class="nav-link" :to="{name:'dashboard'}">Dashboard</router-link>
+                        <router-link class="nav-link" v-if="auth" :to="{name:'dashboard'}">Dashboard</router-link>
 
                     </li>
 

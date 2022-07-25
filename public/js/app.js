@@ -29894,14 +29894,16 @@ var render = function () {
                   "li",
                   { staticClass: "nav-item" },
                   [
-                    _c(
-                      "router-link",
-                      {
-                        staticClass: "nav-link",
-                        attrs: { to: { name: "dashboard" } },
-                      },
-                      [_vm._v("Dashboard")]
-                    ),
+                    _vm.auth
+                      ? _c(
+                          "router-link",
+                          {
+                            staticClass: "nav-link",
+                            attrs: { to: { name: "dashboard" } },
+                          },
+                          [_vm._v("Dashboard")]
+                        )
+                      : _vm._e(),
                   ],
                   1
                 ),
