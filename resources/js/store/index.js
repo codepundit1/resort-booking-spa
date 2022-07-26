@@ -2,11 +2,12 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import router from '../router';
 
+
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
     state: {
-        message: 'Welcome ',
+        message: 'Welcome',
         user: {},
         authenticated: false,
     },
@@ -27,9 +28,34 @@ const store = new Vuex.Store({
             state.user = data;
         },
 
-        SET_AUTHENTICATE(state, data) {
+        SET_AUTHENTICATED(state, data) {
             state.authenticated = data;
+        }
+    },
+
+
+    actions: {
+        authUser({ commit, dispatch }) {
+            return axios.get('/api/user').then((response) => {
+                commit('SET_AUTHENTICATED', true)
+                commit('SET_USER', response.data)
+                localStorage.setItem("auth", true);
+
+                if (router.currentRoute.name !== null) {
+                    router.push({ name: 'home' })
+                };
+
+            }).catch(() => {
+                commit('SET_AUTHENTICATED', false)
+                commit('SET_USER', null)
+                localStorage.removeItem("auth");
+
+                if (router.currentRoute.name !== 'login') {
+                    router.push({ name: 'login' })
+                };
+            })
         },
+
     }
 });
 

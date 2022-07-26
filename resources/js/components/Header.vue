@@ -20,16 +20,16 @@
 
 
                     <li class="nav-item">
-                        <router-link class="nav-link" :to="{name:'dashboard'}">Dashboard</router-link>
+                        <router-link class="nav-link"  :to="{name:'dashboard'}">Dashboard</router-link>
 
                     </li>
 
                     <li class="nav-item">
-                        <router-link class="nav-link"  :to="{name:'resort-list'}">Resort</router-link>
+                        <router-link class="nav-link"   :to="{name:'resort-list'}">Resort</router-link>
                     </li>
 
                     <li class="nav-item">
-                        <router-link class="nav-link"  :to="{name:'booking-list'}">Booking</router-link>
+                        <router-link class="nav-link"   :to="{name:'booking-list'}">Booking</router-link>
 
                     </li>
 
@@ -38,15 +38,15 @@
                 </ul>
 
 
-                 <ul class="navbar-nav ms-auto" v-else>
+                 <ul class="navbar-nav ms-auto" v-else >
                     <li class="nav-item">
-                        <router-link class="nav-link" :to="{name:'home'}"
+                        <router-link class="nav-link"  :to="{name:'home'}"
                             >Home</router-link
                         >
                     </li>
 
                      <li class="nav-item">
-                        <router-link class="nav-link" :to="{name:'login'}">Login</router-link>
+                        <router-link class="nav-link"  :to="{name:'login'}">Login</router-link>
                     </li>
                 </ul>
 

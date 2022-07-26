@@ -14,7 +14,7 @@ class BookingController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -24,7 +24,7 @@ class BookingController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -35,7 +35,15 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+
+
+        $bookings = Booking::create([
+            'fullname' => $request->fullname,
+
+        ]);
+
+        return response()->json('success', 200);
     }
 
     /**

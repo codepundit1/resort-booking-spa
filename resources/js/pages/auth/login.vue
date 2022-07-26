@@ -69,7 +69,7 @@ export default{
             axios.get('/api/user').then(response => {
                 let user = response.data;
                 this.$store.commit('SET_USER', user);
-                this.$store.commit('SET_AUTHENTICATE', true);
+                this.$store.commit('SET_AUTHENTICATED', true);
 
                 localStorage.setItem("auth", true);
             });
@@ -81,42 +81,4 @@ export default{
     }
 }
 
-// import { Form } from 'vform'
-
-// export default {
-//     data(){
-//         return {
-//             form: new Form({
-//                 email: 'jahidhasanshiplo4@gmail.com',
-//                 password: '12345678',
-//             }),
-//         }
-//     },
-//     methods: {
-//         async login(){
-//             await axios.get('/sanctum/csrf-cookie')
-//             await this.form.post('/login')
-//             await this.getUserData();
-
-//             this.$toast.success({
-//                 title:'Success!',
-//                 message:'Welcome, Dear!'
-//             });
-
-//             this.$router.push({ name: 'dashboard' });
-//         },
-//         async getUserData(){
-//             await axios.get('/api/user').then(response => {
-//                 let user = response.data;
-//                 this.$store.commit('SET_USER', user);
-//                 this.$store.commit('SET_AUTHENTICATED', true);
-
-//                 localStorage.setItem("auth", true);
-//             });
-//         }
-//     },
-//     mounted(){
-//         this.getUserData();
-//     }
-// }
 </script>
